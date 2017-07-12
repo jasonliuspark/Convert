@@ -12,7 +12,7 @@ namespace convert
         public ReadFile()
         {
         }
-        public static Stream Exccel(String FileName)
+        public static Stream OpenSampleFileStream(String FileName)
         {
             Initialise();
 
@@ -74,10 +74,10 @@ namespace convert
         }
         private static Stream OpenClasspathResource(String sampleFileName)
         {
-            FileStream file = new FileStream(System.Configuration.ConfigurationSettings.AppSettings["HSSF.testdata.path"] + sampleFileName, FileMode.Open);
+            FileStream file = new FileStream(System.Configuration.ConfigurationSettings.AppSettings["excel.path"] + sampleFileName, FileMode.Open);
             return file;
         }
-        \}
+
 
         private class NonSeekableStream : Stream
         {
@@ -184,7 +184,7 @@ namespace convert
 
             try
             {
-                Stream fis = HSSFTestDataSamples.OpenSampleFileStream(fileName);
+                Stream fis = OpenSampleFileStream(fileName);
 
                 byte[] buf = new byte[512];
                 while (true)
